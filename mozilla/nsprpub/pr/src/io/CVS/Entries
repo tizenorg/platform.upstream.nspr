@@ -1,0 +1,19 @@
+/.cvsignore/1.2/Sat May 12 04:14:49 2001//TNSPR_4_8_RTM
+/Makefile.in/1.15/Fri Jun  1 14:48:44 2012//TNSPR_4_9_1_RTM
+/prdir.c/3.8/Fri Jun  1 14:48:44 2012//TNSPR_4_9_1_RTM
+/prfdcach.c/3.16/Fri Jun  1 14:48:44 2012//TNSPR_4_9_1_RTM
+/prfile.c/3.48/Fri Jun  1 14:48:44 2012//TNSPR_4_9_1_RTM
+/prio.c/3.24/Fri Jun  1 14:48:44 2012//TNSPR_4_9_1_RTM
+/priometh.c/3.20/Fri Jun  1 14:48:44 2012//TNSPR_4_9_1_RTM
+/pripv6.c/3.14/Fri Jun  1 14:48:44 2012//TNSPR_4_9_1_RTM
+/prlayer.c/3.21/Fri Jun  1 14:48:44 2012//TNSPR_4_9_1_RTM
+/prlog.c/3.55/Fri Jun  1 14:48:44 2012//TNSPR_4_9_1_RTM
+/prmapopt.c/3.22/Fri Jun  1 14:48:44 2012//TNSPR_4_9_1_RTM
+/prmmap.c/3.8/Fri Jun  1 14:48:44 2012//TNSPR_4_9_1_RTM
+/prmwait.c/3.21/Fri Jun  1 14:48:44 2012//TNSPR_4_9_1_RTM
+/prpolevt.c/3.18/Fri Jun  1 14:48:44 2012//TNSPR_4_9_1_RTM
+/prprf.c/3.23/Fri Jun  1 14:48:44 2012//TNSPR_4_9_1_RTM
+/prscanf.c/3.12/Fri Jun  1 14:48:44 2012//TNSPR_4_9_1_RTM
+/prsocket.c/3.65/Fri Jun  1 14:48:45 2012//TNSPR_4_9_1_RTM
+/prstdio.c/3.8/Fri Jun  1 14:48:45 2012//TNSPR_4_9_1_RTM
+D

@@ -1,0 +1,15 @@
+D/admin////
+D/build////
+D/config////
+D/lib////
+D/pkg////
+D/pr////
+D/tools////
+D/include////
+D/macbuild////
+/.cvsignore/1.2/Sat May 12 00:53:26 2001//TNSPR_4_8_RTM
+/aclocal.m4/1.1/Fri Sep 24 18:10:19 2010//TNSPR_4_8_7_BETA1
+/LICENSE/1.1/Tue Mar  6 13:16:12 2012//TNSPR_4_9_1_RTM
+/Makefile.in/1.26/Fri Jun  1 14:48:44 2012//TNSPR_4_9_1_RTM
+/configure/1.331/Tue Jul 24 08:48:27 2012//TNSPR_4_9_2_RTM
+/configure.in/1.334/Tue Jul 24 08:48:27 2012//TNSPR_4_9_2_RTM
