@@ -7,6 +7,7 @@ Url:            http://www.mozilla.org/projects/nspr/
 Group:          System/Libraries
 Source:         ftp://ftp.mozilla.org/pub/nspr/releases/v%{version}/src/nspr-%{version}.tar.bz2
 Source1:        baselibs.conf
+Source1001: 	nspr.manifest
 BuildRequires:  gcc-c++
 BuildRequires:  pkg-config
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
@@ -30,6 +31,7 @@ memory management (malloc and free), and shared library linking.
 
 %prep
 %setup -n nspr-%{version} -q
+cp %{SOURCE1001} .
 cd mozilla
 
 %build
@@ -78,10 +80,12 @@ chmod -x %{buildroot}%{_includedir}/nspr4/prvrsion.h
 %postun -p /sbin/ldconfig
 
 %files
+%manifest %{name}.manifest
 %defattr(-, root, root)
 %{_libdir}/*.so
 
 %files devel
+%manifest %{name}.manifest
 %defattr(-, root, root)
 %{_bindir}/nspr-config
 %{_libdir}/pkgconfig/nspr.pc
