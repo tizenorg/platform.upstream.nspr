@@ -1,10 +1,10 @@
 Name:           nspr
-Version:        4.9.2
+Version:        4.10
 Release:        0
 License:        MPL-2.0
 Summary:        Netscape Portable Runtime
 Url:            http://www.mozilla.org/projects/nspr/
-Group:          System/Libraries
+Group:          Base/Libraries
 Source:         ftp://ftp.mozilla.org/pub/nspr/releases/v%{version}/src/nspr-%{version}.tar.bz2
 Source1:        baselibs.conf
 Source1001: 	nspr.manifest
@@ -20,7 +20,7 @@ memory management (malloc and free), and shared library linking.
 
 %package devel
 Summary:        Netscape Portable Runtime development files
-Group:          Development/Libraries/Other
+Group:          Base/Development
 Requires:       nspr = %{version}
 
 %description devel
@@ -32,7 +32,6 @@ memory management (malloc and free), and shared library linking.
 %prep
 %setup -n nspr-%{version} -q
 cp %{SOURCE1001} .
-cd mozilla
 
 %build
 # set buildtime to "last-modification-time"
@@ -40,7 +39,7 @@ modified="$(sed -n '/^----/n;s/ - .*$//;p;q' "%{_sourcedir}/%{name}.changes")"
 BUILD_STRING="$(date -u -d "${modified}" "+%%F %%T")"
 BUILD_TIME="$(date -u -d "${modified}" "+%%s000000")"
 #
-cd mozilla/nsprpub
+cd nspr
 export CFLAGS="%{optflags}"
 ./configure --enable-optimize="$CFLAGS" \
             --disable-debug \
@@ -53,7 +52,7 @@ export CFLAGS="%{optflags}"
 make SH_DATE="$BUILD_STRING" SH_NOW="$BUILD_TIME" %{?_smp_mflags}
 %check
 # Run test suite
-perl ./mozilla/nsprpub/pr/tests/runtests.pl 2>&1 | tee output.log
+perl ./pr/tests/runtests.pl 2>&1 | tee output.log
 TEST_FAILURES=`grep -c FAILED ./output.log` || :
 if [ $TEST_FAILURES -ne 0 ]; then
   echo "error: test suite returned failure(s)"
@@ -67,11 +66,11 @@ mkdir -p %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_libdir}/nspr
 mkdir -p %{buildroot}%{_libdir}/pkgconfig
 mkdir -p %{buildroot}%{_includedir}/nspr4
-cp mozilla/nsprpub/config/nspr-config %{buildroot}%{_bindir}/
-cp mozilla/nsprpub/config/nspr.pc %{buildroot}%{_libdir}/pkgconfig
-cp -L mozilla/nsprpub/dist/lib/*.so %{buildroot}%{_libdir}
-cp -L mozilla/nsprpub/dist/lib/*.a  %{buildroot}%{_libdir}/nspr/
-cp -rL mozilla/nsprpub/dist/include/nspr/* %{buildroot}%{_includedir}/nspr4/
+cp nspr/config/nspr-config %{buildroot}%{_bindir}/
+cp nspr/config/nspr.pc %{buildroot}%{_libdir}/pkgconfig
+cp -L nspr/dist/lib/*.so %{buildroot}%{_libdir}
+cp -L nspr/dist/lib/*.a  %{buildroot}%{_libdir}/nspr/
+cp -rL nspr/dist/include/nspr/* %{buildroot}%{_includedir}/nspr4/
 # #31667
 chmod -x %{buildroot}%{_includedir}/nspr4/prvrsion.h
 
