@@ -1,5 +1,5 @@
 Name:           nspr
-Version:        4.10
+Version:        4.10.2
 Release:        0
 License:        MPL-2.0
 Summary:        Netscape Portable Runtime
