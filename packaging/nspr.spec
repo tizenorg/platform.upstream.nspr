@@ -43,7 +43,7 @@ cd nspr
 export CFLAGS="%{optflags}"
 ./configure --enable-optimize="$CFLAGS" \
             --disable-debug \
-%ifarch x86_64
+%ifarch x86_64 aarch64
 	    --enable-64bit \
 %endif
 	    --libdir=%{_libdir} \
