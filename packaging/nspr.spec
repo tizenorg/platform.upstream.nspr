@@ -41,9 +41,9 @@ BUILD_TIME="$(date -u -d "${modified}" "+%%s000000")"
 #
 cd nspr
 export CFLAGS="%{optflags}"
-./configure --enable-optimize="$CFLAGS" \
+%configure --enable-optimize="$CFLAGS" \
             --disable-debug \
-%ifarch x86_64
+%ifarch x86_64 aarch64
 	    --enable-64bit \
 %endif
 	    --libdir=%{_libdir} \
