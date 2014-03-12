@@ -41,14 +41,12 @@ BUILD_TIME="$(date -u -d "${modified}" "+%%s000000")"
 #
 cd nspr
 export CFLAGS="%{optflags}"
-./configure --enable-optimize="$CFLAGS" \
-            --disable-debug \
+%configure --enable-optimize="$CFLAGS" \
 %ifarch x86_64
 	    --enable-64bit \
 %endif
-	    --libdir=%{_libdir} \
 	    --includedir=%{_includedir}/nspr4 \
-	    --prefix=%{_prefix}
+            --disable-debug
 make SH_DATE="$BUILD_STRING" SH_NOW="$BUILD_TIME" %{?_smp_mflags}
 %check
 # Run test suite
