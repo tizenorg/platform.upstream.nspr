@@ -7,6 +7,7 @@ Url:            http://www.mozilla.org/projects/nspr/
 Group:          Base/Libraries
 Source:         ftp://ftp.mozilla.org/pub/nspr/releases/v%{version}/src/nspr-%{version}.tar.bz2
 Source1:        baselibs.conf
+Source2:        nspr.changes
 Source1001: 	nspr.manifest
 BuildRequires:  gcc-c++
 BuildRequires:  pkg-config
