@@ -1,5 +1,5 @@
 Name:           nspr
-Version:        4.10.2
+Version:        4.10.6
 Release:        0
 License:        MPL-2.0
 Summary:        Netscape Portable Runtime
@@ -39,8 +39,7 @@ cp %{SOURCE1001} .
 modified="$(sed -n '/^----/n;s/ - .*$//;p;q' "%{_sourcedir}/%{name}.changes")"
 BUILD_STRING="$(date -u -d "${modified}" "+%%F %%T")"
 BUILD_TIME="$(date -u -d "${modified}" "+%%s000000")"
-#
-cd nspr
+#cd nspr
 export CFLAGS="%{optflags}"
 %configure --enable-optimize="$CFLAGS" \
 %ifarch x86_64
@@ -65,11 +64,16 @@ mkdir -p %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_libdir}/nspr
 mkdir -p %{buildroot}%{_libdir}/pkgconfig
 mkdir -p %{buildroot}%{_includedir}/nspr4
-cp nspr/config/nspr-config %{buildroot}%{_bindir}/
-cp nspr/config/nspr.pc %{buildroot}%{_libdir}/pkgconfig
-cp -L nspr/dist/lib/*.so %{buildroot}%{_libdir}
-cp -L nspr/dist/lib/*.a  %{buildroot}%{_libdir}/nspr/
-cp -rL nspr/dist/include/nspr/* %{buildroot}%{_includedir}/nspr4/
+#cp nspr/config/nspr-config %{buildroot}%{_bindir}/
+#cp nspr/config/nspr.pc %{buildroot}%{_libdir}/pkgconfig
+#cp -L nspr/dist/lib/*.so %{buildroot}%{_libdir}
+#cp -L nspr/dist/lib/*.a  %{buildroot}%{_libdir}/nspr/
+#cp -rL nspr/dist/include/nspr/* %{buildroot}%{_includedir}/nspr4/
+cp config/nspr-config %{buildroot}%{_bindir}/
+cp config/nspr.pc %{buildroot}%{_libdir}/pkgconfig
+cp -L dist/lib/*.so %{buildroot}%{_libdir}
+cp -L dist/lib/*.a  %{buildroot}%{_libdir}/nspr/
+cp -rL dist/include/nspr/* %{buildroot}%{_includedir}/nspr4/
 # #31667
 chmod -x %{buildroot}%{_includedir}/nspr4/prvrsion.h
 
