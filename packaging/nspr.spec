@@ -1,7 +1,7 @@
 Name:           nspr
 Version:        4.10.7
 Release:        0
-License:        MPL-2.0
+License:        MPL-2.0 and BSD-2.0
 Summary:        Netscape Portable Runtime
 Url:            http://www.mozilla.org/projects/nspr/
 Group:          Base/Libraries
@@ -78,6 +78,7 @@ chmod -x %{buildroot}%{_includedir}/nspr4/prvrsion.h
 %files
 %manifest %{name}.manifest
 %defattr(-, root, root)
+%license LICENSE LICENSE.BSD-2.0
 %{_libdir}/*.so
 
 %files devel
