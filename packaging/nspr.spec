@@ -44,6 +44,8 @@ BUILD_STRING="$(date -u -d "${modified}" "+%%F %%T")"
 BUILD_TIME="$(date -u -d "${modified}" "+%%s000000")"
 #cd nspr
 export CFLAGS="%{optflags}"
+export CFLAGS+=" -fvisibility=hidden"
+  export CXXFLAGS+=" -fvisibility=hidden"
 %configure --enable-optimize="$CFLAGS" \
 %ifarch x86_64
 	    --enable-64bit \
