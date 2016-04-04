@@ -48,7 +48,7 @@ NSPR_API(const PRIOMethods*)    PR_GetPipeMethods(void);
 ** changes the configuration of the native handle, (e.g., changes it to
 ** blocking or closes it), NSPR will not work correctly.
 */
-NSPR_API(PROsfd)       PR_FileDesc2NativeHandle(PRFileDesc *);
+__attribute__ ((visibility ("default"))) NSPR_API(PROsfd)       PR_FileDesc2NativeHandle(PRFileDesc *);
 NSPR_API(void)         PR_ChangeFileDescNativeHandle(PRFileDesc *, PROsfd);
 NSPR_API(PRFileDesc*)  PR_AllocFileDesc(PROsfd osfd,
                                          const PRIOMethods *methods);
@@ -98,7 +98,7 @@ NSPR_API(PRFileDesc*)	PR_CreateSocketPollFd(PROsfd osfd);
  **************************************************************************
  */
 
-NSPR_API(PRStatus) PR_DestroySocketPollFd(PRFileDesc *fd);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) PR_DestroySocketPollFd(PRFileDesc *fd);
 
 
 /*
@@ -131,7 +131,7 @@ NSPR_API(PRFileDesc*)	PR_Socket(PRInt32 domain, PRInt32 type, PRInt32 proto);
 **    PR_SUCCESS when the lock is held
 **    PR_FAILURE otherwise
 */
-NSPR_API(PRStatus) PR_LockFile(PRFileDesc *fd);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) PR_LockFile(PRFileDesc *fd);
 
 /* FUNCTION: PR_TLockFile
 ** DESCRIPTION:
@@ -141,7 +141,7 @@ NSPR_API(PRStatus) PR_LockFile(PRFileDesc *fd);
 **    PR_SUCCESS when the lock is held
 **    PR_FAILURE otherwise
 */
-NSPR_API(PRStatus) PR_TLockFile(PRFileDesc *fd);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) PR_TLockFile(PRFileDesc *fd);
 
 /* FUNCTION: PR_UnlockFile
 ** DESCRIPTION:
@@ -151,19 +151,19 @@ NSPR_API(PRStatus) PR_TLockFile(PRFileDesc *fd);
 **    PR_SUCCESS when the lock is released
 **    PR_FAILURE otherwise
 */
-NSPR_API(PRStatus) PR_UnlockFile(PRFileDesc *fd);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) PR_UnlockFile(PRFileDesc *fd);
 
 /*
 ** Emulate acceptread by accept and recv.
 */
-NSPR_API(PRInt32) PR_EmulateAcceptRead(PRFileDesc *sd, PRFileDesc **nd,
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) PR_EmulateAcceptRead(PRFileDesc *sd, PRFileDesc **nd,
     PRNetAddr **raddr, void *buf, PRInt32 amount, PRIntervalTime timeout);
 
 /*
 ** Emulate sendfile by reading from the file and writing to the socket.
 ** The file is memory-mapped if memory-mapped files are supported.
 */
-NSPR_API(PRInt32) PR_EmulateSendFile(
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) PR_EmulateSendFile(
     PRFileDesc *networkSocket, PRSendFileData *sendData,
     PRTransmitFileFlags flags, PRIntervalTime timeout);
 

@@ -213,7 +213,7 @@ struct _MDLock {
 			_PR_FAST_INTSON(_is); 				\
 	}
 
-NSPR_API(PRStatus) _MD_NEW_LOCK(struct _MDLock *md);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _MD_NEW_LOCK(struct _MDLock *md);
 NSPR_API(void) _MD_FREE_LOCK(struct _MDLock *lockp);
 
 #define _MD_LOCK(_lockp) _PR_LOCK((_lockp)->lock)
@@ -340,9 +340,9 @@ struct _MDCPU {
     longjmp(jb, 1); \
     PR_END_MACRO
 
-NSPR_API(PRStatus) _MD_InitThread(struct PRThread *thread,
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _MD_InitThread(struct PRThread *thread,
 								PRBool wakeup_parent);
-NSPR_API(PRStatus) _MD_InitAttachedThread(struct PRThread *thread,
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _MD_InitAttachedThread(struct PRThread *thread,
 									PRBool wakeup_parent);
 #define _MD_INIT_THREAD(thread) 			_MD_InitThread(thread, PR_TRUE)
 #define _MD_INIT_ATTACHED_THREAD(thread)		\
@@ -379,13 +379,13 @@ NSPR_API(void) _MD_CleanThread(struct PRThread *thread);
 /* The _PR_MD_WAIT_LOCK and _PR_MD_WAKEUP_WAITER functions put to sleep and
  * awaken a thread which is waiting on a lock or cvar.
  */
-NSPR_API(PRStatus) _MD_wait(struct PRThread *, PRIntervalTime timeout);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _MD_wait(struct PRThread *, PRIntervalTime timeout);
 #define _MD_WAIT _MD_wait
 
 NSPR_API(void) _PR_MD_primordial_cpu();
 NSPR_API(void) _PR_MD_WAKEUP_PRIMORDIAL_CPU();
 
-NSPR_API(PRStatus) _MD_WakeupWaiter(struct PRThread *);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _MD_WakeupWaiter(struct PRThread *);
 #define _MD_WAKEUP_WAITER _MD_WakeupWaiter
 
 NSPR_API(void ) _MD_exit(PRIntn status);
@@ -397,7 +397,7 @@ NSPR_API(void) _MD_SetPriority(struct _MDThread *thread,
 	PRThreadPriority newPri);
 #define _MD_SET_PRIORITY _MD_SetPriority
 
-NSPR_API(PRStatus) _MD_CreateThread(
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _MD_CreateThread(
                         struct PRThread *thread,
                         void (*start) (void *),
                         PRThreadPriority priority,
@@ -425,7 +425,7 @@ extern int _poll(struct pollfd *fds, unsigned long nfds, int timeout);
 
 #define HAVE_THREAD_AFFINITY 1
 
-NSPR_API(PRInt32) _MD_GetThreadAffinityMask(PRThread *unused, PRUint32 *mask);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_GetThreadAffinityMask(PRThread *unused, PRUint32 *mask);
 #define _MD_GETTHREADAFFINITYMASK _MD_GetThreadAffinityMask
 
 NSPR_API(void) _MD_InitRunningCPU(struct _PRCPU *cpu);

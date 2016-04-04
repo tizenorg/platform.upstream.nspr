@@ -46,7 +46,7 @@ PL_strlen(const char *str);
  * maximum; if no terminating '\0' is found, the maximum will be returned.
  */
 
-PR_EXTERN(PRUint32)
+__attribute__ ((visibility ("default"))) PR_EXTERN(PRUint32)
 PL_strnlen(const char *str, PRUint32 max);
 
 /*
@@ -184,7 +184,7 @@ PL_strcatn(char *dst, PRUint32 max, const char *src);
  * NSPR implementation is not i18n.
  */
 
-PR_EXTERN(PRIntn)
+__attribute__ ((visibility ("default"))) PR_EXTERN(PRIntn)
 PL_strcmp(const char *a, const char *b);
 
 /*
@@ -198,7 +198,7 @@ PL_strcmp(const char *a, const char *b);
  * strings is compared.
  */
 
-PR_EXTERN(PRIntn)
+__attribute__ ((visibility ("default"))) PR_EXTERN(PRIntn)
 PL_strncmp(const char *a, const char *b, PRUint32 max);
 
 /*
@@ -210,7 +210,7 @@ PL_strncmp(const char *a, const char *b, PRUint32 max);
  * second.  The NSPR implementation is not i18n.
  */
 
-PR_EXTERN(PRIntn)
+__attribute__ ((visibility ("default"))) PR_EXTERN(PRIntn)
 PL_strcasecmp(const char *a, const char *b);
 
 /*
@@ -222,7 +222,7 @@ PL_strcasecmp(const char *a, const char *b);
  * after the second.  The NSPR implementation is not i18n.
  */
 
-PR_EXTERN(PRIntn)
+__attribute__ ((visibility ("default"))) PR_EXTERN(PRIntn)
 PL_strncasecmp(const char *a, const char *b, PRUint32 max);
 
 /*

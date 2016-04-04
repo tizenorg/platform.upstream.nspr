@@ -88,7 +88,7 @@ NSPR_API(PRAlarm*) PR_CreateAlarm(void);
 ** MEMORY:      N/A
 ** ALGORITHM:   N/A
 ***********************************************************************/
-NSPR_API(PRStatus) PR_DestroyAlarm(PRAlarm *alarm);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) PR_DestroyAlarm(PRAlarm *alarm);
 
 /***********************************************************************
 ** FUNCTION:    PR_SetAlarm
@@ -152,7 +152,7 @@ NSPR_API(PRAlarmID*) PR_SetAlarm(
 ** MEMORY:      N/A.
 ** ALGORITHM:   See PR_SetAlarm().  
 ***********************************************************************/
-NSPR_API(PRStatus) PR_ResetAlarm(
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) PR_ResetAlarm(
 	PRAlarmID *id, PRIntervalTime period, PRUint32 rate);
 
 PR_END_EXTERN_C

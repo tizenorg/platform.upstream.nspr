@@ -35,6 +35,9 @@ memory management (malloc and free), and shared library linking.
 cp %{SOURCE1001} .
 
 %build
+export CFLAGS+=" -fvisibility=hidden"
+  export CXXFLAGS+=" -fvisibility=hidden"
+  
 # set buildtime to "last-modification-time"
 modified="$(sed -n '/^----/n;s/ - .*$//;p;q' "%{_sourcedir}/%{name}.changes")"
 BUILD_STRING="$(date -u -d "${modified}" "+%%F %%T")"

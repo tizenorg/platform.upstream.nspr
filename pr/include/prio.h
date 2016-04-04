@@ -49,7 +49,7 @@ typedef struct PRSendFileData   PRSendFileData;
 
 typedef PRIntn PRDescIdentity;          /* see: Layering file descriptors */
 
-struct PRFileDesc {
+struct __attribute__ ((visibility ("default"))) PRFileDesc {
     const PRIOMethods *methods;         /* the I/O methods table */
     PRFilePrivate *secret;              /* layer dependent data */
     PRFileDesc *lower, *higher;         /* pointers to adjacent layers */
@@ -67,7 +67,7 @@ struct PRFileDesc {
 ** is transmitted.
 ***************************************************************************
 */
-typedef enum PRTransmitFileFlags {
+typedef enum __attribute__ ((visibility ("default"))) PRTransmitFileFlags {
     PR_TRANSMITFILE_KEEP_OPEN = 0,    /* socket is left open after file
                                        * is transmitted. */
     PR_TRANSMITFILE_CLOSE_SOCKET = 1  /* socket is closed after file
@@ -127,7 +127,7 @@ typedef enum PRTransmitFileFlags {
 **************************************************************************
 *************************************************************************/
 
-struct PRIPv6Addr {
+struct __attribute__ ((visibility ("default"))) PRIPv6Addr {
 	union {
 		PRUint8  _S6_u8[16];
 		PRUint16 _S6_u16[8];
@@ -142,7 +142,7 @@ struct PRIPv6Addr {
 
 typedef struct PRIPv6Addr PRIPv6Addr;
 
-union PRNetAddr {
+union __attribute__ ((visibility ("default"))) PRNetAddr {
     struct {
         PRUint16 family;                /* address family (0x00ff maskable) */
 #ifdef XP_BEOS
@@ -190,7 +190,7 @@ union PRNetAddr {
 ** the following enumeration are supported.
 ***************************************************************************
 */
-typedef enum PRSockOption
+typedef enum __attribute__ ((visibility ("default"))) PRSockOption
 {
     PR_SockOpt_Nonblocking,     /* nonblocking io */
     PR_SockOpt_Linger,          /* linger on close if data present */
@@ -216,17 +216,17 @@ typedef enum PRSockOption
     PR_SockOpt_Last
 } PRSockOption;
 
-typedef struct PRLinger {
+typedef struct __attribute__ ((visibility ("default"))) PRLinger {
 	PRBool polarity;		    /* Polarity of the option's setting */
 	PRIntervalTime linger;	    /* Time to linger before closing */
 } PRLinger;
 
-typedef struct PRMcastRequest {
+typedef struct __attribute__ ((visibility ("default"))) PRMcastRequest {
 	PRNetAddr mcaddr;			/* IP multicast address of group */
 	PRNetAddr ifaddr;			/* local IP address of interface */
 } PRMcastRequest;
 
-typedef struct PRSocketOptionData
+typedef struct __attribute__ ((visibility ("default"))) PRSocketOptionData
 {
     PRSockOption option;
     union
@@ -260,7 +260,7 @@ typedef struct PRSocketOptionData
 ** that are affected by the ouput operation.
 ***************************************************************************
 */
-typedef struct PRIOVec {
+typedef struct __attribute__ ((visibility ("default"))) PRIOVec {
     char *iov_base;
     int iov_len;
 } PRIOVec;
@@ -270,7 +270,7 @@ typedef struct PRIOVec {
 ** Discover what type of socket is being described by the file descriptor.
 ***************************************************************************
 */
-typedef enum PRDescType
+typedef enum __attribute__ ((visibility ("default"))) PRDescType
 {
     PR_DESC_FILE = 1,
     PR_DESC_SOCKET_TCP = 2,
@@ -279,7 +279,7 @@ typedef enum PRDescType
     PR_DESC_PIPE = 5
 } PRDescType;
 
-typedef enum PRSeekWhence {
+typedef enum __attribute__ ((visibility ("default"))) PRSeekWhence {
     PR_SEEK_SET = 0,
     PR_SEEK_CUR = 1,
     PR_SEEK_END = 2
@@ -356,7 +356,7 @@ typedef PRStatus (PR_CALLBACK *PRConnectcontinueFN)(
     PRFileDesc *fd, PRInt16 out_flags);
 typedef PRIntn (PR_CALLBACK *PRReservedFN)(PRFileDesc *fd);
 
-struct PRIOMethods {
+struct __attribute__ ((visibility ("default"))) PRIOMethods {
     PRDescType file_type;           /* Type of file represented (tos)           */
     PRCloseFN close;                /* close file and destroy descriptor        */
     PRReadFN read;                  /* read up to specified bytes into buffer   */
@@ -417,7 +417,7 @@ struct PRIOMethods {
  **************************************************************************
  */
 
-typedef enum PRSpecialFD
+typedef enum __attribute__ ((visibility ("default"))) PRSpecialFD
 {
     PR_StandardInput,          /* standard input */
     PR_StandardOutput,         /* standard output */
@@ -787,21 +787,21 @@ NSPR_API(PRStatus) PR_Delete(const char *name);
 
 /**************************************************************************/
 
-typedef enum PRFileType
+typedef enum __attribute__ ((visibility ("default"))) PRFileType
 {
     PR_FILE_FILE = 1,
     PR_FILE_DIRECTORY = 2,
     PR_FILE_OTHER = 3
 } PRFileType;
 
-struct PRFileInfo {
+struct __attribute__ ((visibility ("default"))) PRFileInfo {
     PRFileType type;        /* Type of file */
     PROffset32 size;        /* Size, in bytes, of file's contents */
     PRTime creationTime;    /* Creation time per definition of PRTime */
     PRTime modifyTime;      /* Last modification time per definition of PRTime */
 };
 
-struct PRFileInfo64 {
+struct __attribute__ ((visibility ("default"))) PRFileInfo64 {
     PRFileType type;        /* Type of file */
     PROffset64 size;        /* Size, in bytes, of file's contents */
     PRTime creationTime;    /* Creation time per definition of PRTime */
@@ -898,7 +898,7 @@ NSPR_API(PRStatus)    PR_Rename(const char *from, const char *to);
  *************************************************************************
  */
 
-typedef enum PRAccessHow {
+typedef enum __attribute__ ((visibility ("default"))) PRAccessHow {
     PR_ACCESS_EXISTS = 1,
     PR_ACCESS_WRITE_OK = 2,
     PR_ACCESS_READ_OK = 3
@@ -986,7 +986,7 @@ NSPR_API(PRStatus)	PR_Sync(PRFileDesc *fd);
 
 /************************************************************************/
 
-struct PRDirEntry {
+struct __attribute__ ((visibility ("default"))) PRDirEntry {
     const char *name;        /* name of entry, relative to directory name */
 };
 
@@ -1053,7 +1053,7 @@ NSPR_API(PRDirUTF16*) PR_OpenDirUTF16(const PRUnichar *name);
  *************************************************************************
  */
 
-typedef enum PRDirFlags {
+typedef enum __attribute__ ((visibility ("default"))) PRDirFlags {
     PR_SKIP_NONE = 0x0,
     PR_SKIP_DOT = 0x1,
     PR_SKIP_DOT_DOT = 0x2,
@@ -1411,7 +1411,7 @@ NSPR_API(PRStatus) PR_Listen(PRFileDesc *fd, PRIntn backlog);
  **************************************************************************
  */
 
-typedef enum PRShutdownHow
+typedef enum __attribute__ ((visibility ("default"))) PRShutdownHow
 {
     PR_SHUTDOWN_RCV = 0,      /* disallow further receives */
     PR_SHUTDOWN_SEND = 1,     /* disallow further sends */
@@ -1629,7 +1629,7 @@ NSPR_API(PRInt32) PR_TransmitFile(
 **************************************************************************
 */
 
-struct PRSendFileData {
+struct __attribute__ ((visibility ("default"))) PRSendFileData {
 	PRFileDesc	*fd;			/* file to send							*/
 	PRUint32	file_offset;	/* file offset							*/
 	PRSize		file_nbytes;	/* number of bytes of file data to send	*/
@@ -1832,7 +1832,7 @@ typedef struct PRFileMap PRFileMap;
 /*
  * protection options for read and write accesses of a file mapping
  */
-typedef enum PRFileMapProtect {
+typedef enum __attribute__ ((visibility ("default"))) PRFileMapProtect {
     PR_PROT_READONLY,     /* read only */
     PR_PROT_READWRITE,    /* readable, and write is shared */
     PR_PROT_WRITECOPY     /* readable, and write is private (copy-on-write) */
@@ -1893,7 +1893,7 @@ NSPR_API(PRStatus) PR_CreatePipe(
 /************** The following definitions are for poll ******************/
 /************************************************************************/
 
-struct PRPollDesc {
+struct __attribute__ ((visibility ("default"))) PRPollDesc {
     PRFileDesc* fd;
     PRInt16 in_flags;
     PRInt16 out_flags;

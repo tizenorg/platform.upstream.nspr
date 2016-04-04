@@ -28,7 +28,7 @@ typedef PRIntn (PR_CALLBACK *PLHashEnumerator)(PLHashEntry *he, PRIntn i, void *
 #define HT_ENUMERATE_REMOVE     2       /* remove and free the current entry */
 #define HT_ENUMERATE_UNHASH     4       /* just unhash the current entry */
 
-typedef struct PLHashAllocOps {
+typedef struct __attribute__ ((visibility ("default"))) PLHashAllocOps {
     void *              (PR_CALLBACK *allocTable)(void *pool, PRSize size);
     void                (PR_CALLBACK *freeTable)(void *pool, void *item);
     PLHashEntry *       (PR_CALLBACK *allocEntry)(void *pool, const void *key);
@@ -38,14 +38,14 @@ typedef struct PLHashAllocOps {
 #define HT_FREE_VALUE   0               /* just free the entry's value */
 #define HT_FREE_ENTRY   1               /* free value and entire entry */
 
-struct PLHashEntry {
+struct __attribute__ ((visibility ("default"))) PLHashEntry {
     PLHashEntry         *next;          /* hash chain linkage */
     PLHashNumber        keyHash;        /* key hash function result */
     const void          *key;           /* ptr to opaque key */
     void                *value;         /* ptr to opaque value */
 };
 
-struct PLHashTable {
+struct __attribute__ ((visibility ("default"))) PLHashTable {
     PLHashEntry         **buckets;      /* vector of hash buckets */
     PRUint32              nentries;       /* number of entries in table */
     PRUint32              shift;          /* multiplicative hash shift */
@@ -78,7 +78,7 @@ PL_HashTableDestroy(PLHashTable *ht);
 PR_EXTERN(PLHashEntry *)
 PL_HashTableAdd(PLHashTable *ht, const void *key, void *value);
 
-PR_EXTERN(PRBool)
+__attribute__ ((visibility ("default"))) PR_EXTERN(PRBool)
 PL_HashTableRemove(PLHashTable *ht, const void *key);
 
 PR_EXTERN(void *)
@@ -87,7 +87,7 @@ PL_HashTableLookup(PLHashTable *ht, const void *key);
 PR_EXTERN(void *)
 PL_HashTableLookupConst(PLHashTable *ht, const void *key);
 
-PR_EXTERN(PRIntn)
+__attribute__ ((visibility ("default"))) PR_EXTERN(PRIntn)
 PL_HashTableEnumerateEntries(PLHashTable *ht, PLHashEnumerator f, void *arg);
 
 /* General-purpose C string hash function. */
@@ -95,11 +95,11 @@ PR_EXTERN(PLHashNumber)
 PL_HashString(const void *key);
 
 /* Compare strings using strcmp(), return true if equal. */
-PR_EXTERN(PRIntn)
+__attribute__ ((visibility ("default"))) PR_EXTERN(PRIntn)
 PL_CompareStrings(const void *v1, const void *v2);
 
 /* Stub function just returns v1 == v2 */
-PR_EXTERN(PRIntn)
+__attribute__ ((visibility ("default"))) PR_EXTERN(PRIntn)
 PL_CompareValues(const void *v1, const void *v2);
 
 /* Low level access methods */
@@ -118,7 +118,7 @@ PR_EXTERN(void)
 PL_HashTableRawRemove(PLHashTable *ht, PLHashEntry **hep, PLHashEntry *he);
 
 /* This can be trivially implemented using PL_HashTableEnumerateEntries. */
-PR_EXTERN(PRIntn)
+__attribute__ ((visibility ("default"))) PR_EXTERN(PRIntn)
 PL_HashTableDump(PLHashTable *ht, PLHashEnumerator dump, FILE *fp);
 
 PR_END_EXTERN_C

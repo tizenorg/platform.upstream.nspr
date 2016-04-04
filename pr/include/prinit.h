@@ -188,7 +188,7 @@ NSPR_API(void) PR_Abort(void);
  ****************************************************************
  */
 
-typedef struct PRCallOnceType {
+typedef struct __attribute__ ((visibility ("default"))) PRCallOnceType {
     PRIntn initialized;
     PRInt32 inProgress;
     PRStatus status;

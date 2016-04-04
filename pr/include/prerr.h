@@ -243,7 +243,7 @@
 /* Placeholder for the end of the list */
 #define PR_MAX_ERROR                             (-5924L)
 
-extern void nspr_InitializePRErrorTable(void);
+__attribute__ ((visibility ("default"))) extern void nspr_InitializePRErrorTable(void);
 #define ERROR_TABLE_BASE_nspr (-6000L)
 
 #endif /* prerr_h___ */

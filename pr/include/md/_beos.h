@@ -396,7 +396,7 @@ NSPR_API(void) _MD_cleanup_before_exit(void);
 NSPR_API(void) _MD_exit(PRIntn status);
 
 NSPR_API(char*) _MD_get_env(const char *name);
-NSPR_API(PRIntn) _MD_put_env(const char *name);
+__attribute__ ((visibility ("default"))) NSPR_API(PRIntn) _MD_put_env(const char *name);
 
 NSPR_API(void) _MD_early_init(void);
 NSPR_API(void) _MD_final_init(void);
@@ -418,7 +418,7 @@ NSPR_API(void) _MD_clock_interrupt(void);
 // NSPR_API(_PRCPU*) _MD_current_cpu(void);
 // NSPR_API(void) _MD_set_current_cpu(_PRCPU *cpu);
 // NSPR_API(void) _MD_init_running_cpu(_PRCPU *cpu);
-NSPR_API(PRInt32) _MD_pause_cpu(PRIntervalTime timeout);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_pause_cpu(PRIntervalTime timeout);
 
 /* Thread stuff */
 
@@ -427,9 +427,9 @@ NSPR_API(PRThread*) _MD_get_attached_thread(void);
 NSPR_API(PRThread*) _MD_last_thread(void);
 NSPR_API(void) _MD_set_current_thread(PRThread *thread);
 NSPR_API(void) _MD_set_last_thread(PRThread *thread);
-NSPR_API(PRStatus) _MD_init_thread(PRThread *thread);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _MD_init_thread(PRThread *thread);
 NSPR_API(void) _MD_exit_thread(PRThread *thread);
-NSPR_API(PRStatus) _MD_init_attached_thread(PRThread *thread);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _MD_init_attached_thread(PRThread *thread);
 
 NSPR_API(void) _MD_suspend_thread(PRThread *thread);
 NSPR_API(void) _MD_resume_thread(PRThread *thread);
@@ -446,7 +446,7 @@ NSPR_API(void) _MD_clean_thread(PRThread *thread);
 NSPR_API(void) _MD_create_primordial_user_thread(PRThread *);
 NSPR_API(PRThread*) _MD_create_user_thread(PRUint32 stacksize, void (*start)(void *), void *arg);
 NSPR_API(void) _MD_init_primordial_thread(PRThread *thread);
-NSPR_API(PRStatus) _MD_create_thread(PRThread *thread, void (*start)(void *), PRThreadPriority priority, PRThreadScope scope, PRThreadState state, PRUint32 stackSize);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _MD_create_thread(PRThread *thread, void (*start)(void *), PRThreadPriority priority, PRThreadScope scope, PRThreadState state, PRUint32 stackSize);
 NSPR_API(void) _MD_yield(void);
 NSPR_API(void) _MD_set_priority(struct _MDThread *md, PRThreadPriority newPri);
 
@@ -457,26 +457,26 @@ NSPR_API(void) _MD_init_context(PRThread *thread, char *top, void (*start) (void
 NSPR_API(void) _MD_switch_context(PRThread *thread);
 NSPR_API(void) _MD_restore_context(PRThread *thread);
 
-NSPR_API(PRStatus) _MD_wait(PRThread *, PRIntervalTime timeout);
-NSPR_API(PRStatus) _MD_wakeup_waiter(PRThread *);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _MD_wait(PRThread *, PRIntervalTime timeout);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _MD_wakeup_waiter(PRThread *);
 
-NSPR_API(PRInt32) _MD_setthreadaffinitymask(PRThread *thread, PRUint32 mask );
-NSPR_API(PRInt32) _MD_getthreadaffinitymask(PRThread *thread, PRUint32 *mask);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_setthreadaffinitymask(PRThread *thread, PRUint32 mask );
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_getthreadaffinitymask(PRThread *thread, PRUint32 *mask);
 
 /* Thread Synchronization */
 
 NSPR_API(void) _MD_init_locks(void);
-NSPR_API(PRStatus) _MD_new_lock(struct _MDLock *md);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _MD_new_lock(struct _MDLock *md);
 NSPR_API(void) _MD_free_lock(struct _MDLock *md);
 NSPR_API(void) _MD_lock(struct _MDLock *md);
-NSPR_API(PRIntn) _MD_test_and_lock(struct _MDLock *md);
+__attribute__ ((visibility ("default"))) NSPR_API(PRIntn) _MD_test_and_lock(struct _MDLock *md);
 NSPR_API(void) _MD_unlock(struct _MDLock *md);
 NSPR_API(void) _MD_ioq_lock(void);
 NSPR_API(void) _MD_ioq_unlock(void);
 NSPR_API(void) _MD_new_sem(struct _MDSemaphore *md, PRUintn value);
 NSPR_API(void) _MD_destroy_sem(struct _MDSemaphore *md);
-NSPR_API(PRStatus) _MD_timed_wait_sem(struct _MDSemaphore *md, PRIntervalTime timeout);
-NSPR_API(PRStatus) _MD_wait_sem(struct _MDSemaphore *md);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _MD_timed_wait_sem(struct _MDSemaphore *md, PRIntervalTime timeout);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _MD_wait_sem(struct _MDSemaphore *md);
 NSPR_API(void) _MD_post_sem(struct _MDSemaphore *md);
 // NSPR_API(PRInt32) _MD_new_cv(struct _MDCVar *md);
 // NSPR_API(void) _MD_free_cv(struct _MDCVar *md);
@@ -487,64 +487,64 @@ NSPR_API(void) _MD_post_sem(struct _MDSemaphore *md);
 /* File I/O */
 
 // NSPR_API(void) _MD_init_io(void);
-NSPR_API(PRStatus) _MD_open_dir(struct _MDDir *md,const char *name);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _MD_open_dir(struct _MDDir *md,const char *name);
 NSPR_API(char *) _MD_read_dir(struct _MDDir *md, PRIntn flags);
-NSPR_API(PRInt32) _MD_close_dir(struct _MDDir *md);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_close_dir(struct _MDDir *md);
 NSPR_API(void) _MD_make_nonblock(PRFileDesc *fd);
 NSPR_API(void) _MD_init_fd_inheritable(PRFileDesc *fd, PRBool imported);
 NSPR_API(void) _MD_query_fd_inheritable(PRFileDesc *fd);
-NSPR_API(PRInt32) _MD_open(const char *name, PRIntn osflags, PRIntn mode);
-NSPR_API(PRInt32) _MD_close_file(PRInt32 osfd);
-NSPR_API(PRInt32) _MD_read(PRFileDesc *fd, void *buf, PRInt32 amount);
-NSPR_API(PRInt32) _MD_write(PRFileDesc *fd, const void *buf, PRInt32 amount);
-NSPR_API(PRInt32) _MD_writev(PRFileDesc *fd, const PRIOVec *iov, PRInt32 iov_size, PRIntervalTime timeout);
-NSPR_API(PRInt32) _MD_lseek(PRFileDesc *fd, PRInt32 offset, int whence);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_open(const char *name, PRIntn osflags, PRIntn mode);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_close_file(PRInt32 osfd);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_read(PRFileDesc *fd, void *buf, PRInt32 amount);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_write(PRFileDesc *fd, const void *buf, PRInt32 amount);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_writev(PRFileDesc *fd, const PRIOVec *iov, PRInt32 iov_size, PRIntervalTime timeout);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_lseek(PRFileDesc *fd, PRInt32 offset, int whence);
 NSPR_API(PRInt64) _MD_lseek64(PRFileDesc *fd, PRInt64 offset, int whence);
-NSPR_API(PRInt32) _MD_fsync(PRFileDesc *fd);
-NSPR_API(PRInt32) _MD_delete(const char *name);
-NSPR_API(PRInt32) _MD_getfileinfo(const char *fn, PRFileInfo *info);
-NSPR_API(PRInt32) _MD_getfileinfo64(const char *fn, PRFileInfo64 *info);
-NSPR_API(PRInt32) _MD_getopenfileinfo(const PRFileDesc *fd, PRFileInfo *info);
-NSPR_API(PRInt32) _MD_getopenfileinfo64(const PRFileDesc *fd, PRFileInfo64 *info);
-NSPR_API(PRInt32) _MD_rename(const char *from, const char *to);
-NSPR_API(PRInt32) _MD_access(const char *name, PRIntn how);
-NSPR_API(PRInt32) _MD_stat(const char *name, struct stat *buf);
-NSPR_API(PRInt32) _MD_mkdir(const char *name, PRIntn mode);
-NSPR_API(PRInt32) _MD_rmdir(const char *name);
-NSPR_API(PRInt32) _MD_pr_poll(PRPollDesc *pds, PRIntn npds, PRIntervalTime timeout);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_fsync(PRFileDesc *fd);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_delete(const char *name);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_getfileinfo(const char *fn, PRFileInfo *info);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_getfileinfo64(const char *fn, PRFileInfo64 *info);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_getopenfileinfo(const PRFileDesc *fd, PRFileInfo *info);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_getopenfileinfo64(const PRFileDesc *fd, PRFileInfo64 *info);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_rename(const char *from, const char *to);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_access(const char *name, PRIntn how);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_stat(const char *name, struct stat *buf);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_mkdir(const char *name, PRIntn mode);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_rmdir(const char *name);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_pr_poll(PRPollDesc *pds, PRIntn npds, PRIntervalTime timeout);
 
 /* Network I/O */
-NSPR_API(PRInt32) _MD_close_socket(PRInt32 osfd);
-NSPR_API(PRInt32) _MD_connect(PRFileDesc *fd, const PRNetAddr *addr, PRUint32 addrlen, PRIntervalTime timeout);
-NSPR_API(PRInt32) _MD_accept(PRFileDesc *fd, PRNetAddr *addr, PRUint32 *addrlen, PRIntervalTime timeout);
-NSPR_API(PRInt32) _MD_bind(PRFileDesc *fd, const PRNetAddr *addr, PRUint32 addrlen);
-NSPR_API(PRInt32) _MD_listen(PRFileDesc *fd, PRIntn backlog);
-NSPR_API(PRInt32) _MD_shutdown(PRFileDesc *fd, PRIntn how);
-NSPR_API(PRInt32) _MD_recv(PRFileDesc *fd, void *buf, PRInt32 amount, PRIntn flags, PRIntervalTime timeout);
-NSPR_API(PRInt32) _MD_send(PRFileDesc *fd, const void *buf, PRInt32 amount, PRIntn flags, PRIntervalTime timeout);
-NSPR_API(PRInt32) _MD_accept_read(PRFileDesc *sd, PRInt32 *newSock, PRNetAddr **raddr, void *buf, PRInt32 amount, PRIntervalTime timeout);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_close_socket(PRInt32 osfd);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_connect(PRFileDesc *fd, const PRNetAddr *addr, PRUint32 addrlen, PRIntervalTime timeout);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_accept(PRFileDesc *fd, PRNetAddr *addr, PRUint32 *addrlen, PRIntervalTime timeout);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_bind(PRFileDesc *fd, const PRNetAddr *addr, PRUint32 addrlen);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_listen(PRFileDesc *fd, PRIntn backlog);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_shutdown(PRFileDesc *fd, PRIntn how);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_recv(PRFileDesc *fd, void *buf, PRInt32 amount, PRIntn flags, PRIntervalTime timeout);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_send(PRFileDesc *fd, const void *buf, PRInt32 amount, PRIntn flags, PRIntervalTime timeout);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_accept_read(PRFileDesc *sd, PRInt32 *newSock, PRNetAddr **raddr, void *buf, PRInt32 amount, PRIntervalTime timeout);
 // NSPR_API(PRInt32) _MD_fast_accept(PRFileDesc *fd, PRNetAddr *addr, PRUint32 *addrlen, PRIntervalTime timeout, PRBool fast, _PR_AcceptTimeoutCallback callback, void *callbackArg);
 // NSPR_API(PRInt32) _MD_fast_accept_read(PRFileDesc *sd, PRInt32 *newSock, PRNetAddr **raddr, void *buf, PRInt32 amount, PRIntervalTime timeout, PRBool fast, _PR_AcceptTimeoutCallback callback, void *callbackArg);
 // NSPR_API(void) _MD_update_accept_context(PRInt32 s, PRInt32 ls);
-NSPR_API(PRStatus) _MD_getsockname(PRFileDesc *fd, PRNetAddr *addr, PRUint32 *addrlen);
-NSPR_API(PRStatus) _MD_getpeername(PRFileDesc *fd, PRNetAddr *addr, PRUint32 *addrlen);
-NSPR_API(PRStatus) _MD_getsockopt(PRFileDesc *fd, PRInt32 level, PRInt32 optname, char* optval, PRInt32* optlen);
-NSPR_API(PRStatus) _MD_setsockopt(PRFileDesc *fd, PRInt32 level, PRInt32 optname, const char* optval, PRInt32 optlen);
-NSPR_API(PRInt32) _MD_recvfrom(PRFileDesc *fd, void *buf, PRInt32 amount, PRIntn flags, PRNetAddr *addr, PRUint32 *addrlen, PRIntervalTime timeout);
-NSPR_API(PRInt32) _MD_sendto(PRFileDesc *fd, const void *buf, PRInt32 amount, PRIntn flags, const PRNetAddr *addr, PRUint32 addrlen, PRIntervalTime timeout);
-NSPR_API(PRInt32) _MD_socketpair(int af, int type, int flags, PRInt32 *osfd);
-NSPR_API(PRInt32) _MD_socket(int af, int type, int flags);
-NSPR_API(PRInt32) _MD_socketavailable(PRFileDesc *fd);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _MD_getsockname(PRFileDesc *fd, PRNetAddr *addr, PRUint32 *addrlen);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _MD_getpeername(PRFileDesc *fd, PRNetAddr *addr, PRUint32 *addrlen);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _MD_getsockopt(PRFileDesc *fd, PRInt32 level, PRInt32 optname, char* optval, PRInt32* optlen);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _MD_setsockopt(PRFileDesc *fd, PRInt32 level, PRInt32 optname, const char* optval, PRInt32 optlen);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_recvfrom(PRFileDesc *fd, void *buf, PRInt32 amount, PRIntn flags, PRNetAddr *addr, PRUint32 *addrlen, PRIntervalTime timeout);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_sendto(PRFileDesc *fd, const void *buf, PRInt32 amount, PRIntn flags, const PRNetAddr *addr, PRUint32 addrlen, PRIntervalTime timeout);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_socketpair(int af, int type, int flags, PRInt32 *osfd);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_socket(int af, int type, int flags);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_socketavailable(PRFileDesc *fd);
 
 // NSPR_API(PRInt32) _MD_get_socket_error(void);
-NSPR_API(PRStatus) _MD_gethostname(char *name, PRUint32 namelen);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _MD_gethostname(char *name, PRUint32 namelen);
 
 /* Process management */
 
 NSPR_API(PRProcess *) _MD_create_process(const char *path, char *const *argv, char *const *envp, const PRProcessAttr *attr);
-NSPR_API(PRStatus) _MD_detach_process(PRProcess *process);
-NSPR_API(PRStatus) _MD_wait_process(PRProcess *process, PRInt32 *exitCode);
-NSPR_API(PRStatus) _MD_kill_process(PRProcess *process);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _MD_detach_process(PRProcess *process);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _MD_wait_process(PRProcess *process, PRInt32 *exitCode);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _MD_kill_process(PRProcess *process);
 
 /* Atomic data operations */
 
@@ -556,16 +556,16 @@ NSPR_API(PRStatus) _MD_kill_process(PRProcess *process);
 /* Memory management */
 
 NSPR_API(void) _MD_init_segs(void);
-NSPR_API(PRStatus) _MD_alloc_segment(PRSegment *seg, PRUint32 size, void *vaddr);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _MD_alloc_segment(PRSegment *seg, PRUint32 size, void *vaddr);
 NSPR_API(void) _MD_free_segment(PRSegment *seg);
 
 /* Memory mapped file I/O */
 
-NSPR_API(PRStatus) _MD_create_file_map(PRFileMap *fmap, PRInt64 size);
-NSPR_API(PRInt32) _MD_get_mem_map_alignment(void);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _MD_create_file_map(PRFileMap *fmap, PRInt64 size);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _MD_get_mem_map_alignment(void);
 NSPR_API(void *) _MD_mem_map(PRFileMap *fmap, PRInt64 offset, PRUint32 len);
-NSPR_API(PRStatus) _MD_mem_unmap(void *addr, PRUint32 size);
-NSPR_API(PRStatus) _MD_close_file_map(PRFileMap *fmap);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _MD_mem_unmap(void *addr, PRUint32 size);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _MD_close_file_map(PRFileMap *fmap);
 
 /* Time related */
 
@@ -576,8 +576,8 @@ NSPR_API(PRIntervalTime) _MD_interval_per_sec(void);
 
 /* File locking */
 
-NSPR_API(PRStatus) _MD_lockfile(PRInt32 osfd);
-NSPR_API(PRStatus) _MD_tlockfile(PRInt32 osfd);
-NSPR_API(PRStatus) _MD_unlockfile(PRInt32 osfd);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _MD_lockfile(PRInt32 osfd);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _MD_tlockfile(PRInt32 osfd);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _MD_unlockfile(PRInt32 osfd);
 
 #endif /* _nspr_beos_defs_h___*/

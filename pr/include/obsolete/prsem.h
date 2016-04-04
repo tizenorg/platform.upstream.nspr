@@ -42,7 +42,7 @@ NSPR_API(void) PR_DestroySem(PRSemaphore *sem);
 ** This routine can return PR_PENDING_INTERRUPT if the waiting thread 
 ** has been interrupted.
 */
-NSPR_API(PRStatus) PR_WaitSem(PRSemaphore *sem);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) PR_WaitSem(PRSemaphore *sem);
 
 /*
 ** This routine increments the counter value of the semaphore. If other threads 
@@ -57,7 +57,7 @@ NSPR_API(void) PR_PostSem(PRSemaphore *sem);
 F** at the time of the call, but may not be the actual value when the
 ** caller inspects it.
 */
-NSPR_API(PRUintn) PR_GetValueSem(PRSemaphore *sem);
+__attribute__ ((visibility ("default"))) NSPR_API(PRUintn) PR_GetValueSem(PRSemaphore *sem);
 
 PR_END_EXTERN_C
 

@@ -73,7 +73,7 @@ typedef size_t (*PLMallocSizeFn)(const void *ptr);
 ** Measure all memory used by a PLArenaPool, excluding the PLArenaPool
 ** structure.
 */
-PR_EXTERN(size_t) PL_SizeOfArenaPoolExcludingPool(
+__attribute__ ((visibility ("default"))) PR_EXTERN(size_t) PL_SizeOfArenaPoolExcludingPool(
     const PLArenaPool *pool, PLMallocSizeFn mallocSizeOf);
 
 PR_END_EXTERN_C

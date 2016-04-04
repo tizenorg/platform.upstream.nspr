@@ -809,7 +809,7 @@ NSPR_API(void) _PR_MD_CLEAR_STACK(PRThreadStack* ts);
 #define    _PR_MD_CLEAR_STACK _MD_CLEAR_STACK
 
 /* CPU related */
-NSPR_API(PRInt32) _PR_MD_GET_INTSOFF(void);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _PR_MD_GET_INTSOFF(void);
 #define    _PR_MD_GET_INTSOFF _MD_GET_INTSOFF
 
 NSPR_API(void) _PR_MD_SET_INTSOFF(PRInt32 _val);
@@ -841,7 +841,7 @@ extern void _PR_MD_EXIT(PRIntn status);
 NSPR_API(void) _PR_MD_INIT_LOCKS(void);
 #define    _PR_MD_INIT_LOCKS _MD_INIT_LOCKS
 
-NSPR_API(PRStatus) _PR_MD_NEW_LOCK(_MDLock *md);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _PR_MD_NEW_LOCK(_MDLock *md);
 #define    _PR_MD_NEW_LOCK _MD_NEW_LOCK
 
 NSPR_API(void) _PR_MD_FREE_LOCK(_MDLock *md);
@@ -851,7 +851,7 @@ NSPR_API(void) _PR_MD_LOCK(_MDLock *md);
 #define    _PR_MD_LOCK _MD_LOCK
 
 /* Return 0 on success, a nonzero value on failure. */
-NSPR_API(PRIntn) _PR_MD_TEST_AND_LOCK(_MDLock *md);
+__attribute__ ((visibility ("default"))) NSPR_API(PRIntn) _PR_MD_TEST_AND_LOCK(_MDLock *md);
 #define    _PR_MD_TEST_AND_LOCK _MD_TEST_AND_LOCK
 
 NSPR_API(void) _PR_MD_UNLOCK(_MDLock *md);
@@ -888,7 +888,7 @@ NSPR_API(void) _PR_MD_POST_SEM(_MDSemaphore *md);
 /* Condition Variables related -- only for native threads */
 
 #ifndef _PR_LOCAL_THREADS_ONLY /* not if only local threads supported */
-NSPR_API(PRInt32) _PR_MD_NEW_CV(_MDCVar *md);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _PR_MD_NEW_CV(_MDCVar *md);
 #define    _PR_MD_NEW_CV _MD_NEW_CV
 
 NSPR_API(void) _PR_MD_FREE_CV(_MDCVar *md);
@@ -929,7 +929,7 @@ extern void _PR_MD_EXIT_THREAD(PRThread *thread);
 
 #ifndef _PR_LOCAL_THREADS_ONLY /* not if only local threads supported */
 
-NSPR_API(PRStatus) _PR_MD_INIT_ATTACHED_THREAD(PRThread *thread);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) _PR_MD_INIT_ATTACHED_THREAD(PRThread *thread);
 #define    _PR_MD_INIT_ATTACHED_THREAD _MD_INIT_ATTACHED_THREAD
 
 extern void _PR_MD_SUSPEND_THREAD(PRThread *thread);
@@ -2101,7 +2101,7 @@ extern PRStatus _PR_MakeNativeIPCName(
 
 /* Socket call error code */
 
-NSPR_API(PRInt32) _PR_MD_GET_SOCKET_ERROR(void);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) _PR_MD_GET_SOCKET_ERROR(void);
 #define    _PR_MD_GET_SOCKET_ERROR _MD_GET_SOCKET_ERROR
 
 /* Get name of current host */

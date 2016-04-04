@@ -59,7 +59,7 @@ NSPR_API(void) PR_DetachThread(void);
 ** Get the id of the named thread. Each thread is assigned a unique id
 ** when it is created or attached.
 */
-NSPR_API(PRUint32) PR_GetThreadID(PRThread *thread);
+__attribute__ ((visibility ("default"))) NSPR_API(PRUint32) PR_GetThreadID(PRThread *thread);
 
 /*
 ** Set the procedure that is called when a thread is dumped. The procedure
@@ -78,20 +78,20 @@ NSPR_API(void) PR_SetThreadDumpProc(
 **
 ** Returns 0 on success, -1 on failure.
 */
-NSPR_API(PRInt32) PR_GetThreadAffinityMask(PRThread *thread, PRUint32 *mask);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) PR_GetThreadAffinityMask(PRThread *thread, PRUint32 *mask);
 
 /*
 ** Set this thread's affinity mask.  
 **
 ** Returns 0 on success, -1 on failure.
 */
-NSPR_API(PRInt32) PR_SetThreadAffinityMask(PRThread *thread, PRUint32 mask );
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) PR_SetThreadAffinityMask(PRThread *thread, PRUint32 mask );
 
 /*
 ** Set the default CPU Affinity mask.
 **
 */
-NSPR_API(PRInt32) PR_SetCPUAffinityMask(PRUint32 mask);
+__attribute__ ((visibility ("default"))) NSPR_API(PRInt32) PR_SetCPUAffinityMask(PRUint32 mask);
 
 /*
 ** Show status of all threads to standard error output.
@@ -197,7 +197,7 @@ NSPR_API(void) SetExecutionEnvironment(PRThread* thread, void *environment);
 ** Needed by the garbage collector.
 */
 typedef PRStatus (PR_CALLBACK *PREnumerator)(PRThread *t, int i, void *arg);
-NSPR_API(PRStatus) PR_EnumerateThreads(PREnumerator func, void *arg);
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus) PR_EnumerateThreads(PREnumerator func, void *arg);
 
 /* 
 ** Signature of a thread stack scanning function. It is applied to every
@@ -214,14 +214,14 @@ typedef PRStatus
 ** data. If scanFun returns a status value other than PR_SUCCESS the scan
 ** is aborted, and the status value is returned. 
 */
-NSPR_API(PRStatus)
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus)
 PR_ThreadScanStackPointers(PRThread* t,
                            PRScanStackFun scanFun, void* scanClosure);
 
 /* 
 ** Calls PR_ThreadScanStackPointers for every thread.
 */
-NSPR_API(PRStatus)
+__attribute__ ((visibility ("default"))) NSPR_API(PRStatus)
 PR_ScanStackPointers(PRScanStackFun scanFun, void* scanClosure);
 
 /*
@@ -229,7 +229,7 @@ PR_ScanStackPointers(PRScanStackFun scanFun, void* scanClosure);
 ** on a thread in bytes, sufficient for making decisions about whether 
 ** to continue recursing or not.
 */
-NSPR_API(PRUword)
+__attribute__ ((visibility ("default"))) NSPR_API(PRUword)
 PR_GetStackSpaceLeft(PRThread* t);
 
 /*---------------------------------------------------------------------------
@@ -259,20 +259,20 @@ NSPR_API(PRMonitor*) PR_NewNamedMonitor(const char* name);
 ** thread. Return PR_FALSE if some other thread owned the lock at the
 ** time of the call.
 */
-NSPR_API(PRBool) PR_TestAndLock(PRLock *lock);
+__attribute__ ((visibility ("default"))) NSPR_API(PRBool) PR_TestAndLock(PRLock *lock);
 
 /*
 ** Test and then enter the mutex associated with the monitor if it's not
 ** already entered by some other thread. Return PR_FALSE if some other
 ** thread owned the mutex at the time of the call.
 */
-NSPR_API(PRBool) PR_TestAndEnterMonitor(PRMonitor *mon);
+__attribute__ ((visibility ("default"))) NSPR_API(PRBool) PR_TestAndEnterMonitor(PRMonitor *mon);
 
 /*
 ** Return the number of times that the current thread has entered the
 ** mutex. Returns zero if the current thread has not entered the mutex.
 */
-NSPR_API(PRIntn) PR_GetMonitorEntryCount(PRMonitor *mon);
+__attribute__ ((visibility ("default"))) NSPR_API(PRIntn) PR_GetMonitorEntryCount(PRMonitor *mon);
 
 /*
 ** Just like PR_CEnterMonitor except that if the monitor is owned by
