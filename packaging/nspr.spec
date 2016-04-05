@@ -36,7 +36,7 @@ cp %{SOURCE1001} .
 
 %build
 # set buildtime to "last-modification-time"
-modified="$(sed -n '/^----/n;s/ - .*$//;p;q' "%{_sourcedir}/%{name}.changes")"
+#modified="$(sed -n '/^----/n;s/ - .*$//;p;q' "%{_sourcedir}/%{name}.changes")"
 BUILD_STRING="$(date -u -d "${modified}" "+%%F %%T")"
 BUILD_TIME="$(date -u -d "${modified}" "+%%s000000")"
 #cd nspr
